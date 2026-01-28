@@ -105,6 +105,53 @@ body, html {
   100% { transform: scale(1); }
 }
 
+.confirmar-btn-wrapper {
+  position: absolute;
+  bottom: 20px;              /* parte inferior de la tarjeta */
+  left: 50%;                 /* centrado horizontal */
+  transform: translateX(-50%);
+  z-index: 5;
+  text-align: center;        /* asegura que el botón quede centrado */
+  width: 100%;               /* se adapta al ancho de la tarjeta */
+}
+
+.confirmar-btn {
+  display: inline-block;
+  padding: 6px 14px;          /* más pequeño y delicado */
+  font-size: 13px;            /* tamaño reducido */
+  font-weight: 600;
+  color: #fff;
+  background: linear-gradient(135deg, #318a54, #20b858); /* degradado elegante */
+  border: none;
+  border-radius: 40px;
+  text-decoration: none;
+  cursor: pointer;
+
+  box-shadow: 0 3px 8px rgba(0,0,0,0.25);
+  transition: transform 0.3s ease, background 0.3s ease;
+  animation: palpitar 1.8s infinite; /* efecto latido más suave */
+}
+
+.confirmar-btn:hover {
+  transform: scale(1.05);     /* efecto elegante al pasar el mouse */
+  background: linear-gradient(135deg, #20b858, #3ccf7a);
+}
+
+/* Animación de palpitar */
+@keyframes palpitar {
+  0%, 100% { transform: scale(1); }
+  50%      { transform: scale(1.08); }
+}
+
+/* Responsividad */
+@media (max-width: 480px) {
+  .confirmar-btn {
+    padding: 5px 12px;
+    font-size: 12px;
+  }
+}
+
+
 
 
 @media (max-width: 600px) {
@@ -119,4 +166,3 @@ body, html {
     padding: 10px 20px;
   }
 }
-
