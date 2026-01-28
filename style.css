@@ -1,95 +1,122 @@
-body {
+body, html {
   margin: 0;
   padding: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  background: #eaeaea;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  background: #f0f0f0;
 }
 
-/* SOBRE */
+/* Contenedor principal */
 .sobre {
   position: relative;
   width: 100%;
-  max-width: 400px;   /* ancho máximo para celular */
-  height: 100vh;      /* ocupa toda la pantalla */
-  background: linear-gradient(145deg, #40e0d0, #20b2aa); /* turquesa */
-  box-shadow: 0 20px 40px rgba(0,0,0,0.5); /* sombreado acentuado */
-  overflow: hidden;
-  border-radius: 12px;
-}
-
-/* SOLAPAS triangulares */
-.solapa {
-  position: absolute;
-  width: 100%;
   height: 100%;
-  background: linear-gradient(145deg, #20b2aa, #008b8b); /* bordes más opacos */
-  transform-origin: center;
-  transition: transform 2s ease; /* apertura lenta */
+  background: url('img/fondo1.jpg') center/cover no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: inset 0 0 40px rgba(0,0,0,0.7);
 }
 
-.arriba { clip-path: polygon(50% 0, 0 50%, 100% 50%); top: 0; }
-.abajo { clip-path: polygon(0 50%, 100% 50%, 50% 100%); bottom: 0; }
-.izquierda { clip-path: polygon(0 50%, 50% 0, 50% 100%); left: 0; }
-.derecha { clip-path: polygon(50% 0, 100% 50%, 50% 100%); right: 0; }
-
-/* BOTÓN ABRIR */
-#abrirBtn {
+/* Tapas del sobre */
+.tapa {
   position: absolute;
-  top: 50%; left: 50%;
-  transform: translate(-50%, -50%);
-  padding: 20px;
-  border-radius: 50%;
-  border: none;
-  background: linear-gradient(#ddd, #aaa);
-  box-shadow: inset -3px -3px 6px #fff, inset 3px 3px 6px #666;
-  font-weight: bold;
-  cursor: pointer;
-  z-index: 10;
+  width: 50%;
+  height: 50%;
+  background: url('img/fondo1.jpg') center/cover no-repeat;
+  box-shadow: inset 0 0 30px rgba(0,0,0,0.8);
+  transition: transform 2s ease;
+  z-index: 2;
 }
 
-/* TARJETA INTERIOR */
+.tapa.top-left { top: 0; left: 0; transform-origin: top left; }
+.tapa.top-right { top: 0; right: 0; transform-origin: top right; }
+.tapa.bottom-left { bottom: 0; left: 0; transform-origin: bottom left; }
+.tapa.bottom-right { bottom: 0; right: 0; transform-origin: bottom right; }
+
+/* Animación de apertura */
+.sobre.open .tapa.top-left { transform: rotate(-90deg); }
+.sobre.open .tapa.top-right { transform: rotate(90deg); }
+.sobre.open .tapa.bottom-left { transform: rotate(90deg); }
+.sobre.open .tapa.bottom-right { transform: rotate(-90deg); }
+
 .tarjeta {
-  position: absolute;
-  inset: 0;
-  background-image: url("img/fondo_invitacion.png");
-  background-size: cover;
-  background-position: center;
+  position: relative;
+  width: 90%;
+  max-width: 400px;
+  height: 80%; /* altura fija para que se vea */
+  background: url('img/fondo_invitacion.png') center/cover no-repeat;
   opacity: 0;
-  transform: scale(0.8) translateY(100%);
-  transition: transform 1.5s ease, opacity 1.5s ease;
-  border-radius: 10px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  transition: opacity 3s ease;
   z-index: 1;
 }
 
-/* Paloma en esquina superior izquierda */
+
+.sobre.open .tarjeta {
+  opacity: 1;
+}
+
+/* Paloma animada */
 .paloma {
   position: absolute;
   top: 10px;
   left: 10px;
   width: 80px;
-}
-.paloma img {
-  width: 100%;
   height: auto;
+  z-index: 3;
 }
 
-/* EFECTO ABRIR */
-.sobre.abierto .arriba { transform: translateY(-100%) rotateX(180deg); }
-.sobre.abierto .abajo { transform: translateY(100%) rotateX(-180deg); }
-.sobre.abierto .izquierda { transform: translateX(-100%) rotateY(180deg); }
-.sobre.abierto .derecha { transform: translateX(100%) rotateY(-180deg); }
-.sobre.abierto .tarjeta { opacity: 1; transform: scale(1) translateY(0); }
+/* Contenedor para centrar el botón */
+.abrir-btn-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 4;
+}
 
-/* RESPONSIVE */
-@media (max-width: 800px) {
-  .sobre {
-    max-width: 100%;
-    height: 100vh;
+/* Botón abrir */
+.abrir-btn {
+  padding: 12px 28px;
+  font-size: 18px;
+  font-weight: bold;
+  background: rgba(255, 255, 255, 0.95);
+  border: 1.5px solid #333;    /* borde más delicado */
+  border-radius: 10px;
+  cursor: pointer;
+  
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3); /* sombreado elegante */
+  transition: background 0.3s ease;
+  
+  animation: latido 1.5s infinite; /* efecto de latido */
+}
+
+.abrir-btn:hover {
+  background: rgba(240,240,240,0.95);
+}
+
+/* Animación de latido */
+@keyframes latido {
+  0%   { transform: scale(1); }
+  25%  { transform: scale(1.05); }
+  50%  { transform: scale(1); }
+  75%  { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+
+
+@media (max-width: 600px) {
+  .paloma {
+    width: 60px;
   }
-  .paloma { width: 60px; }
+  .tarjeta {
+    width: 95%;
+  }
+  .abrir-btn {
+    font-size: 16px;
+    padding: 10px 20px;
+  }
 }
 
