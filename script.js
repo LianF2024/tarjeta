@@ -1,12 +1,7 @@
-document.getElementById("abrirBtn").addEventListener("click", function() {
-  // Ocultar botón
-  this.style.display = "none";
-
-  // Activar música de fondo
-  const musica = document.getElementById("musica");
-  musica.play();
-
-  // Abrir sobre con animación
-  document.querySelector(".sobre").classList.add("abierto");
+// Al presionar el botón, abrir el sobre y reproducir música
+document.getElementById('abrirBtn').addEventListener('click', function() {
+  document.getElementById('sobre').classList.add('open');
+  this.style.display = 'none'; // ocultar botón
+  document.getElementById('musica').play();
 });
 
