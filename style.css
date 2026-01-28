@@ -46,7 +46,7 @@ body, html {
   width: 90%;
   max-width: 400px;
   height: 80%; /* altura fija para que se vea */
-  background: url('img/fondo_invitacion\ .png') center/cover no-repeat;
+  background: url('img/fondo_invitacion.png') center/cover no-repeat;
   opacity: 0;
   transition: opacity 3s ease;
   z-index: 1;
