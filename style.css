@@ -1,0 +1,95 @@
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: #eaeaea;
+}
+
+/* SOBRE */
+.sobre {
+  position: relative;
+  width: 100%;
+  max-width: 400px;   /* ancho máximo para celular */
+  height: 100vh;      /* ocupa toda la pantalla */
+  background: linear-gradient(145deg, #40e0d0, #20b2aa); /* turquesa */
+  box-shadow: 0 20px 40px rgba(0,0,0,0.5); /* sombreado acentuado */
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+/* SOLAPAS triangulares */
+.solapa {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(145deg, #20b2aa, #008b8b); /* bordes más opacos */
+  transform-origin: center;
+  transition: transform 2s ease; /* apertura lenta */
+}
+
+.arriba { clip-path: polygon(50% 0, 0 50%, 100% 50%); top: 0; }
+.abajo { clip-path: polygon(0 50%, 100% 50%, 50% 100%); bottom: 0; }
+.izquierda { clip-path: polygon(0 50%, 50% 0, 50% 100%); left: 0; }
+.derecha { clip-path: polygon(50% 0, 100% 50%, 50% 100%); right: 0; }
+
+/* BOTÓN ABRIR */
+#abrirBtn {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  border-radius: 50%;
+  border: none;
+  background: linear-gradient(#ddd, #aaa);
+  box-shadow: inset -3px -3px 6px #fff, inset 3px 3px 6px #666;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 10;
+}
+
+/* TARJETA INTERIOR */
+.tarjeta {
+  position: absolute;
+  inset: 0;
+  background-image: url("img/fondo_invitacion.png");
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transform: scale(0.8) translateY(100%);
+  transition: transform 1.5s ease, opacity 1.5s ease;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+/* Paloma en esquina superior izquierda */
+.paloma {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  width: 80px;
+}
+.paloma img {
+  width: 100%;
+  height: auto;
+}
+
+/* EFECTO ABRIR */
+.sobre.abierto .arriba { transform: translateY(-100%) rotateX(180deg); }
+.sobre.abierto .abajo { transform: translateY(100%) rotateX(-180deg); }
+.sobre.abierto .izquierda { transform: translateX(-100%) rotateY(180deg); }
+.sobre.abierto .derecha { transform: translateX(100%) rotateY(-180deg); }
+.sobre.abierto .tarjeta { opacity: 1; transform: scale(1) translateY(0); }
+
+/* RESPONSIVE */
+@media (max-width: 480px) {
+  .sobre {
+    max-width: 100%;
+    height: 100vh;
+  }
+  .paloma { width: 60px; }
+}
+
